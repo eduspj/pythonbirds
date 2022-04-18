@@ -20,6 +20,7 @@ from atores import Obstaculo, Porco, PassaroVermelho, PassaroAmarelo, DESTRUIDO,
     Ator, Passaro
 from fase import Fase, Ponto, EM_ANDAMENTO, VITORIA, DERROTA
 
+
 class FaseTestes(TestCase):
     def teste_acabou_com_porcos_e_passaros(self):
         fase = Fase()
@@ -31,8 +32,10 @@ class FaseTestes(TestCase):
         self.assertEqual(EM_ANDAMENTO, fase.status())
 
         # colidindo cada passaro com um porco no tempo 3
-        for passaro, porco in zip(passaros, porcos):
-            passaro.colidir(porco, 3)
+        for ator in porcos + passaros:
+            ator.status = DESTRUIDO
+        # for passaro, porco in zip(passaros, porcos):
+        #     passaro.colidir(porco, 3)
 
         self.assertEqual(VITORIA, fase.status())
 
